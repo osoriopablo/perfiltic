@@ -43,19 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .csrf().disable()
             .authorizeRequests()
                 .antMatchers(HttpMethod.POST,Constants.LOGIN_URL).permitAll()
+                .antMatchers(HttpMethod.GET,"/product/**").permitAll()
                 .anyRequest().authenticated().and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager()));
-                // .antMatchers("/users/**",Constants.LOGIN_URL).permitAll().and();
-                
-                // .anyRequest().authenticated()
-                // .and();
-            // .formLogin()
-            //     .loginPage("/login")
-            //     .permitAll()
-            //     .and()
-            // .logout()
-            //     .permitAll();
     }
 
     @Override

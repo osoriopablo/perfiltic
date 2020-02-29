@@ -1,5 +1,8 @@
 package com.perfiltic.test.persistence.models;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,15 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * Category
  */
 @Entity
-@Table
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = {"id"})})
 public class Category {
 
     @Id
@@ -36,17 +42,23 @@ public class Category {
     @JsonBackReference
     private Users users;
 
+    @OneToMany(cascade= CascadeType.ALL  , targetEntity = Product.class, mappedBy = "categories")
+    @JsonManagedReference
+    private List<Product> products;
+
+
 
 
     public Category() {
     }
 
-    public Category(long id, String image, String name, long parentCategory, Users users) {
+    public Category(long id, String image, String name, long parentCategory, Users users, List<Product> products) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.parentCategory = parentCategory;
         this.users = users;
+        this.products = products;
     }
 
     public long getId() {
@@ -89,6 +101,14 @@ public class Category {
         this.users = users;
     }
 
+    public List<Product> getProducts() {
+        return this.products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public Category id(long id) {
         this.id = id;
         return this;
@@ -114,6 +134,11 @@ public class Category {
         return this;
     }
 
+    public Category products(List<Product> products) {
+        this.products = products;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -122,8 +147,10 @@ public class Category {
             ", name='" + getName() + "'" +
             ", parentCategory='" + getParentCategory() + "'" +
             ", users='" + getUsers() + "'" +
+            ", products='" + getProducts() + "'" +
             "}";
     }
+    
     
 
 

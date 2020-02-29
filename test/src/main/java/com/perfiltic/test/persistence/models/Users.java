@@ -37,17 +37,22 @@ public class Users {
     @JsonManagedReference
     private List<Category> categories;
 
+    @OneToMany(cascade= CascadeType.ALL  , targetEntity = Product.class, mappedBy = "users")
+    @JsonManagedReference
+    private List<Product> products;
+
+
 
 
     public Users() {
     }
 
-    public Users(long id, String username, String password, boolean isUsing2FA, String secret) {
+    public Users(long id, String username, String password, List<Category> categories, List<Product> products) {
         this.id = id;
         this.username = username;
         this.password = password;
-        // this.isUsing2FA = isUsing2FA;
-        // this.secret = Base32.random();
+        this.categories = categories;
+        this.products = products;
     }
 
     public long getId() {
@@ -74,25 +79,21 @@ public class Users {
         this.password = password;
     }
 
-    // public boolean isIsUsing2FA() {
-    //     return this.isUsing2FA;
-    // }
+    public List<Category> getCategories() {
+        return this.categories;
+    }
 
-    // public boolean getIsUsing2FA() {
-    //     return this.isUsing2FA;
-    // }
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 
-    // public void setIsUsing2FA(boolean isUsing2FA) {
-    //     this.isUsing2FA = isUsing2FA;
-    // }
+    public List<Product> getProducts() {
+        return this.products;
+    }
 
-    // public String getSecret() {
-    //     return this.secret;
-    // }
-
-    // public void setSecret(String secret) {
-    //     this.secret = secret;
-    // }
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public Users id(long id) {
         this.id = id;
@@ -109,15 +110,15 @@ public class Users {
         return this;
     }
 
-    // public Users isUsing2FA(boolean isUsing2FA) {
-    //     this.isUsing2FA = isUsing2FA;
-    //     return this;
-    // }
+    public Users categories(List<Category> categories) {
+        this.categories = categories;
+        return this;
+    }
 
-    // public Users secret(String secret) {
-    //     this.secret = secret;
-    //     return this;
-    // }
+    public Users products(List<Product> products) {
+        this.products = products;
+        return this;
+    }
 
     @Override
     public String toString() {
@@ -125,10 +126,11 @@ public class Users {
             " id='" + getId() + "'" +
             ", username='" + getUsername() + "'" +
             ", password='" + getPassword() + "'" +
-            // ", isUsing2FA='" + isIsUsing2FA() + "'" +
-            // ", secret='" + getSecret() + "'" +
+            ", categories='" + getCategories() + "'" +
+            ", products='" + getProducts() + "'" +
             "}";
     }
+    
     
 
 }

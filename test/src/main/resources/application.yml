@@ -20,5 +20,7 @@ spring:
             # minimum-idle: 10
             maximum-pool-size: 2
         platform: postgres
-        username: postgres
-        password: password
+        username: perfiltic
+        password: perfiltic
+        url: jdbc:postgresql://localhost:5432/perfiltic
+        

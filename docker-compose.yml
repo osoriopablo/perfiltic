@@ -1,0 +1,37 @@
+# docker-compose.yml
+version: '3'
+services:
+  database:
+    image: "postgres:11.0-alpine" # use latest official postgres version
+    network_mode: bridge
+    container_name: database
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports: 
+      - 5432:5432
+    expose:
+    - 5432
+  
+  springbootapp:
+    image: springbootapp:latest
+    network_mode: bridge
+    container_name: springbootapp
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /data/perfiltic-app
+    ports:
+      - "8081:8081"
+    expose:
+      - 8081
+    depends_on:
+      - database
+    links: 
+      - database
+    environment: 
+      - DB_HOST=database
+volumes:
+  database-data: # named volumes can be managed easier using docker-compose

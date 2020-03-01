@@ -22,5 +22,5 @@ spring:
         platform: postgres
         username: perfiltic
         password: perfiltic
-        url: jdbc:postgresql://localhost:5432/perfiltic
+        url: jdbc:postgresql://${DB_HOST}:5432/perfiltic
         

@@ -1,7 +1,10 @@
 package com.perfiltic.test.persistence.models;
 
-import javax.annotation.Generated;
+import java.util.List;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,11 +49,16 @@ public class Product {
     @JsonBackReference
     private Category categories;
 
+    @ElementCollection
+    @CollectionTable(name = "productImages",joinColumns = @JoinColumn(name = "productId"))
+    @Column
+    private List<String> productImages;
+
 
     public Product() {
     }
 
-    public Product(long id, String name, String description, Double weigth, Double price, Users users, Category categories) {
+    public Product(long id, String name, String description, Double weigth, Double price, Users users, Category categories, List<String> productImages) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -58,6 +66,7 @@ public class Product {
         this.price = price;
         this.users = users;
         this.categories = categories;
+        this.productImages = productImages;
     }
 
     public long getId() {
@@ -116,6 +125,14 @@ public class Product {
         this.categories = categories;
     }
 
+    public List<String> getProductImages() {
+        return this.productImages;
+    }
+
+    public void setProductImages(List<String> productImages) {
+        this.productImages = productImages;
+    }
+
     public Product id(long id) {
         this.id = id;
         return this;
@@ -151,6 +168,11 @@ public class Product {
         return this;
     }
 
+    public Product productImages(List<String> productImages) {
+        this.productImages = productImages;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -161,8 +183,10 @@ public class Product {
             ", price='" + getPrice() + "'" +
             ", users='" + getUsers() + "'" +
             ", categories='" + getCategories() + "'" +
+            ", productImages='" + getProductImages() + "'" +
             "}";
     }
+
 
     
 }

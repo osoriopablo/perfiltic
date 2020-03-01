@@ -15,4 +15,15 @@
             <b>parentCategory</b>
         </field>
     </mapping>
+
+    <mapping>
+        <class-a>com.perfiltic.test.dto.ProductDto</class-a>
+        <class-b>com.perfiltic.test.persistence.models.Product</class-b>
+        <field>
+            <a>productImages</a>
+            <b>productImages</b>
+        </field>
+    </mapping>
+
+
 </mappings>

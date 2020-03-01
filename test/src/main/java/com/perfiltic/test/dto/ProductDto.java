@@ -1,9 +1,11 @@
 package com.perfiltic.test.dto;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -19,7 +21,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "description",
 "weigth",
 "price",
-"categoryId"
+"categoryId",
+"productImages"
 })
 public class ProductDto {
 
@@ -40,7 +43,12 @@ private Double weigth;
 private Double price;
 
 @JsonProperty("categoryId")
+@NotNull(message = "categoryId cannot be null")
 private Integer categoryId;
+
+@JsonProperty("productImages")
+private List<String> productImages;
+
 @JsonIgnore
 private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -58,14 +66,16 @@ public ProductDto() {
 * @param name
 * @param description
 * @param categoryId
+* @param productImages
 */
-public ProductDto(String name, String description, Double weigth, Double price, Integer categoryId) {
+public ProductDto(String name, String description, Double weigth, Double price, Integer categoryId, List<String> productImages) {
 super();
 this.name = name;
 this.description = description;
 this.weigth = weigth;
 this.price = price;
 this.categoryId = categoryId;
+this.productImages = productImages;
 }
 
 @JsonProperty("name")
@@ -116,6 +126,16 @@ return categoryId;
 @JsonProperty("categoryId")
 public void setCategoryId(Integer categoryId) {
 this.categoryId = categoryId;
+}
+
+@JsonProperty("productImages")
+public List<String> getproductImages() {
+return productImages;
+}
+
+@JsonProperty("productImages")
+public void setproductImages(List<String> productImages) {
+this.productImages = productImages;
 }
 
 @JsonAnyGetter

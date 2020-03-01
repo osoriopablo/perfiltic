@@ -57,9 +57,12 @@ public class ProductService {
         }
     }
 
-	public List<Product> getProducts(String category) {
-		return repository.findAll();
-	}
+    public Product getProduct(Long id){
+
+        Optional<Product> optional = repository.findById(id);
+
+        return optional.get();
+    }
 
     
 }

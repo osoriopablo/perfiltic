@@ -8,16 +8,30 @@ import { HttpService } from '../http.service';
 })
 export class ListComponent implements OnInit {
 
-  brews: Object;
+  brews: Product[];
+  categories: Products;
 
   constructor(private _http: HttpService) { }
 
   ngOnInit() {
-    this._http.getBeer().subscribe(data => {
-      this.brews = data
-      console.log(this.brews);
+    this._http.getBeer().subscribe((data : Products) => {
+      this.categories = data;
+      this.brews = data.products;
+      console.log("THE CATS",this.categories);
     }
   );
   }
 
+}
+
+class Products {
+  public products: Array<Product>;
+}
+
+class Product {
+  public id : Number;
+  public weigth : Number;
+  public price : Number;
+  public name : String;
+  public description : String;
 }

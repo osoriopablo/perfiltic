@@ -1,7 +1,10 @@
 package com.perfiltic.test.service;
 
+import java.util.List;
+
 import com.perfiltic.test.dto.CategoryDto;
 import com.perfiltic.test.persistence.models.Category;
+import com.perfiltic.test.persistence.models.Product;
 import com.perfiltic.test.persistence.models.Users;
 import com.perfiltic.test.repository.CategoryRepository;
 import com.perfiltic.test.repository.UsersRepository;
@@ -43,6 +46,14 @@ public class CategoryService {
             return new Category();
         }
     }
+
+	public Category getProducts(String categoryName) {
+		try {
+            return repository.findByName(categoryName);
+        } catch (Exception e) {
+            return new Category();
+        }
+	}
 
     
 }

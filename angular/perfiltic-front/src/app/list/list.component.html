@@ -1,9 +1,11 @@
-<h1>Breweries</h1>
+<h1>{{ title }}</h1>
 
 <ul *ngIf="brews">
-  <li *ngFor="let category of brews">
+  <li *ngFor="let category of brews" (click)="onClickAction(category)">
+
+    <img class="list-images" src="{{ category.productImages[0] }}" alt="ProductoSinImagen">
     <p class="name">{{ category.name }}</p>
     <p class="price">{{ category.description }}</p>
-    <a class="site" >{{ category.price }}</a>
+    <a class="site" >Price : {{ category.price }}</a>
   </li>
 </ul>

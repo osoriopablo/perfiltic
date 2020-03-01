@@ -12,4 +12,8 @@ export class HttpService {
     // return this.http.get('https://api.openbrewerydb.org/breweries')
     return this.http.get('http://localhost:8081/category/category1')
   }
+
+  getProductDetail(id : Number){
+    return this.http.get('http://localhost:8081/product/'+id);
+  }
 }

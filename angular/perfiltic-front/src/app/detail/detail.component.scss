@@ -1,0 +1,48 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 20%;
+
+    li {
+        background: rgb(238, 238, 238);
+        padding: 1em;
+        margin-right: 10px;
+        width: 60%;
+        height: 400px;
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin: 0;
+            margin-left: 40%;
+        }
+
+        p.name {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        p.country {
+            text-transform: uppercase;
+            font-size: .9rem;
+            flex-grow: 1;
+            
+        }
+
+        img.list-images{
+            margin-left: 14%;
+        }
+    }
+}
+
+img{
+    width: 70%;
+    height: 70%;
+}
+
+h1{
+    margin-left: 40%;
+}

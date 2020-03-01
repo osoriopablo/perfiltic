@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   constructor(private _http: HttpService,private router: Router) { }
 
   ngOnInit() {
-    this._http.getBeer().subscribe((data : Products) => {
+    this._http.getBeer(window.location.pathname.substring(1)).subscribe((data : Products) => {
       this.categories = data;
       this.brews = data.products;
       this.title = data.name;
@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
 
   onClickAction(category : Product){
     console.log("HELLO CLICK", category);
-    this.router.navigate(['list',category.id])
+    this.router.navigate([window.location.pathname.substring(1),category.id])
     
   }
 

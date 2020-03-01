@@ -1,1 +1,12 @@
-<p>detail works!</p>
+<h1>{{ title }}</h1>
+
+<ul *ngIf="productInfo">
+  <li>
+
+    <img class="list-images" src="{{ productInfo.productImages[0] }}" alt="ProductoSinImagen">
+    <p class="name">{{ productInfo.name }}</p>
+    <p class="price">{{ productInfo.description }}</p>
+    <p class="site" >Price : {{ productInfo.price }}</p>
+    <p class="weight" >Weight : {{ productInfo.weigth }}</p>
+  </li>
+</ul>

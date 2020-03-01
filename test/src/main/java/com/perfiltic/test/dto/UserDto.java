@@ -30,9 +30,6 @@ private String username;
 @Size(min = 5,message ="password need to have at least 5 characters")
 private String password;
 
-@JsonIgnore
-private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
 /**
 * No args constructor for use in serialization
 *
@@ -69,16 +66,6 @@ return password;
 @JsonProperty("password")
 public void setPassword(String password) {
 this.password = password;
-}
-
-@JsonAnyGetter
-public Map<String, Object> getAdditionalProperties() {
-return this.additionalProperties;
-}
-
-@JsonAnySetter
-public void setAdditionalProperty(String name, Object value) {
-this.additionalProperties.put(name, value);
 }
 
 }

@@ -10,3 +10,6 @@ in order to run the DB (POSTGRESQL), you have follow these instructions:
 
 Finally ... you've a backend at port 8081 and frontend in port 8080 
 
+
+
+THE VIDEO IS IN THE FOLLOWING LINK  https://www.loom.com/share/ef7e519de08240dfa814036da1009172
